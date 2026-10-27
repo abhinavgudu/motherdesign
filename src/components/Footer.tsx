@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Building2, Phone, MapPin, Clock, Star, ShieldCheck, Heart } from "lucide-react";
 
 export default function Footer() {
@@ -13,14 +14,20 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md">
-                <Building2 className="w-6 h-6" />
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white shadow-md p-0.5 shrink-0 border border-amber-400/30">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="Mother's Design & Construction Logo"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="block text-xl font-extrabold text-white tracking-tight">
                   MOTHER&apos;S DESIGN
                 </span>
-                <span className="block text-xs font-semibold text-blue-400 uppercase">
+                <span className="block text-xs font-semibold text-amber-400 uppercase">
                   &amp; CONSTRUCTION • मदर&apos;एस निर्माण
                 </span>
               </div>

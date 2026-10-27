@@ -81,6 +81,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   other: {
     "geo.region": "IN-BR",
     "geo.placename": "Pipra, Supaul, Bihar",
@@ -97,8 +105,9 @@ const jsonLd = {
   name: "Mother's Design & Construction",
   alternateName: ["मदर'एस डिजाइन & कंस्ट्रक्शन", "Mother's Construction Pipra"],
   url: "https://mothersdesign.com",
-  logo: "https://mothersdesign.com/images/hero-building.jpg",
+  logo: "https://mothersdesign.com/images/logo.jpg",
   image: [
+    "https://mothersdesign.com/images/logo.jpg",
     "https://mothersdesign.com/images/hero-building.jpg",
     "https://mothersdesign.com/images/gmap_1.jpg",
     "https://mothersdesign.com/images/gmap_2.jpg",

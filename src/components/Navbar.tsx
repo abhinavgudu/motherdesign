@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, MapPin, Clock, Star, Menu, X, Building2, ArrowRight, Zap } from "lucide-react";
 
 interface NavbarProps {
@@ -61,15 +62,24 @@ export default function Navbar({ onOpenUrgent }: NavbarProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
           {/* Logo & Brand Identity */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0f2444] to-[#1e3e62] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-              <Building2 className="w-6 h-6 text-blue-400" />
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-slate-200 bg-white shadow-sm flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:shadow-md transition-all shrink-0">
+              <Image
+                src="/images/logo.jpg"
+                alt="Mother's Design & Construction Logo"
+                width={48}
+                height={48}
+                className="w-full h-full object-contain"
+                priority
+              />
             </div>
             <div>
-              <span className="block text-xl font-extrabold tracking-tight text-[#0f2444] group-hover:text-blue-700 transition-colors">
+              <span className="block text-lg sm:text-xl font-black tracking-tight text-[#0f2444] group-hover:text-blue-700 transition-colors">
                 MOTHER&apos;S DESIGN
               </span>
-              <span className="block text-xs font-semibold tracking-wider text-slate-500 uppercase">
-                &amp; CONSTRUCTION • मदर&apos;एस निर्माण
+              <span className="block text-[11px] font-bold tracking-wider text-amber-600 uppercase flex items-center gap-1.5">
+                <span>&amp; CONSTRUCTION</span>
+                <span className="inline-block w-1 h-1 rounded-full bg-slate-300" />
+                <span className="text-slate-500 font-medium">मदर&apos;एस निर्माण</span>
               </span>
             </div>
           </Link>
