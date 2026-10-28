@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { LanguageProvider } from "@/context/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
@@ -20,7 +21,8 @@ export default function Home() {
   const [isUrgentOpen, setIsUrgentOpen] = useState(false);
 
   return (
-    <main className="min-h-screen flex flex-col bg-slate-50">
+    <LanguageProvider>
+      <main className="min-h-screen flex flex-col bg-slate-50">
       {/* Navigation */}
       <Navbar onOpenUrgent={() => setIsUrgentOpen(true)} />
 
@@ -65,6 +67,7 @@ export default function Home() {
         isOpen={isUrgentOpen}
         onClose={() => setIsUrgentOpen(false)}
       />
-    </main>
+      </main>
+    </LanguageProvider>
   );
 }

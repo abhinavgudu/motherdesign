@@ -4,8 +4,18 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Building2, Phone, MapPin, Clock, Star, ShieldCheck, Heart } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import {
+  WhatsAppLogo,
+  FacebookLogo,
+  InstagramLogo,
+  JustdialLogo,
+  GoogleMapsLogo,
+} from "@/components/BrandLogos";
 
 export default function Footer() {
+  const { lang, t } = useLanguage();
+
   return (
     <footer className="bg-[#0b192c] text-slate-300 border-t border-slate-800 text-sm">
       {/* Upper Footer */}
@@ -25,16 +35,16 @@ export default function Footer() {
               </div>
               <div>
                 <span className="block text-xl font-extrabold text-white tracking-tight">
-                  MOTHER&apos;S DESIGN
+                  {lang === "hi" ? "मदर'एस डिज़ाइन" : "MOTHER'S DESIGN"}
                 </span>
                 <span className="block text-xs font-semibold text-amber-400 uppercase">
-                  &amp; CONSTRUCTION • मदर&apos;एस निर्माण
+                  {lang === "hi" ? "& कंस्ट्रक्शन • मदर'एस निर्माण" : "& CONSTRUCTION • मदर'एस निर्माण"}
                 </span>
               </div>
             </div>
 
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Bihar&apos;s trusted civil engineering and architectural firm. Delivering 3D elevation designs, residential villas, and commercial complexes with uncompromising structural integrity.
+              {t("footer.desc")}
             </p>
 
             <div className="flex items-center space-x-3 pt-2">
@@ -53,7 +63,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-white font-bold text-sm uppercase tracking-wider border-b border-slate-800 pb-2">
-              Quick Navigation
+              {t("footer.quickNav")}
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-400">
               <li>
@@ -121,24 +131,121 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Social Media & Platform Links with Original Brand Logos */}
+        <div className="mt-12 pt-8 border-t border-slate-800/60">
+          <h4 className="text-white font-bold text-sm uppercase tracking-wider text-center mb-6">
+            {t("footer.connect")}
+          </h4>
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/918264360443?text=Hello%20Mother's%20Design%20%26%20Construction,%20I%20am%20interested%20in%20a%20construction%20quotation."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 bg-slate-800/60 hover:bg-[#25D366]/15 border border-slate-700 hover:border-[#25D366]/40 rounded-xl px-4 py-2.5 transition-all duration-200"
+              title="Chat on WhatsApp"
+            >
+              <WhatsAppLogo className="w-5 h-5 shrink-0" />
+              <span className="text-xs font-semibold text-slate-300 group-hover:text-[#25D366] transition-colors">WhatsApp</span>
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://www.facebook.com/er.saurav.karak"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 bg-slate-800/60 hover:bg-[#1877F2]/15 border border-slate-700 hover:border-[#1877F2]/40 rounded-xl px-4 py-2.5 transition-all duration-200"
+              title="Follow on Facebook"
+            >
+              <FacebookLogo className="w-5 h-5 shrink-0" />
+              <span className="text-xs font-semibold text-slate-300 group-hover:text-[#1877F2] transition-colors">Facebook</span>
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/saurav_karak_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 bg-slate-800/60 hover:bg-pink-500/15 border border-slate-700 hover:border-pink-500/40 rounded-xl px-4 py-2.5 transition-all duration-200"
+              title="Follow on Instagram"
+            >
+              <InstagramLogo className="w-5 h-5 shrink-0" />
+              <span className="text-xs font-semibold text-slate-300 group-hover:text-pink-400 transition-colors">Instagram</span>
+            </a>
+
+            {/* JustDial */}
+            <a
+              href="https://www.justdial.com/Supaul/Mothers-Design-Construction-Near-Post-Office-Pipra-Bazar/9999P6473-6473-220719110021-N9J6_BZDET"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 bg-slate-800/60 hover:bg-amber-500/15 border border-slate-700 hover:border-amber-500/40 rounded-xl px-4 py-2.5 transition-all duration-200"
+              title="View on JustDial"
+            >
+              <JustdialLogo className="w-5 h-5 shrink-0" />
+              <span className="text-xs font-semibold text-slate-300 group-hover:text-amber-400 transition-colors">JustDial</span>
+            </a>
+
+            {/* Google Maps */}
+            <a
+              href="https://maps.app.goo.gl/qD4B79n1rVwG1j7z6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 bg-slate-800/60 hover:bg-red-500/15 border border-slate-700 hover:border-red-500/40 rounded-xl px-4 py-2.5 transition-all duration-200"
+              title="View on Google Maps"
+            >
+              <GoogleMapsLogo className="w-5 h-5 shrink-0" />
+              <span className="text-xs font-semibold text-slate-300 group-hover:text-red-400 transition-colors">Google Maps</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-[#07111f] py-6 border-t border-slate-800/80 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div>
-            © 2026 Mother&apos;s Design &amp; Construction. All rights reserved.
+      <div className="bg-[#07111f] py-6 border-t border-slate-800/80 text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-center md:text-left">
+            © 2026 <strong className="text-slate-300">Mother&apos;s Design &amp; Construction</strong>. {t("footer.rights")}
           </div>
-          <div className="flex items-center space-x-4">
-            <span>Designed for Excellence in Bihar</span>
+
+          {/* Designed by bllinto.in & WhatsApp 7461080144 */}
+          <div className="flex items-center flex-wrap justify-center gap-3 py-1 px-4 rounded-full bg-slate-900/90 border border-slate-800 shadow-inner">
+            <span className="text-slate-400 flex items-center gap-1">
+              <span>{t("footer.designedBy")}</span>
+              <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline animate-pulse" />
+              <span>{t("footer.by")}</span>
+              <a
+                href="https://bllinto.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400 hover:text-amber-300 font-extrabold hover:underline transition-colors tracking-wide"
+              >
+                bllinto.in
+              </a>
+            </span>
+            <span className="text-slate-600 hidden sm:inline">•</span>
+            <a
+              href="https://wa.me/917461080144?text=Hello%20bllinto.in,%20I%20came%20from%20Mother's%20Design%20%26%20Construction%20website."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-bold transition-colors bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20"
+              title="Chat with bllinto.in on WhatsApp"
+            >
+              <WhatsAppLogo className="w-3.5 h-3.5" />
+              <span>WhatsApp: 7461080144</span>
+            </a>
+          </div>
+
+          <div className="flex items-center space-x-3 text-slate-500">
+            <span>Pipra, Supaul (Bihar)</span>
             <span>•</span>
             <a
               href="https://maps.app.goo.gl/qD4B79n1rVwG1j7z6"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:underline"
+              className="text-blue-400 hover:underline flex items-center gap-1"
             >
-              Google Maps Listing
+              <span>Google Maps Verified</span>
             </a>
           </div>
         </div>

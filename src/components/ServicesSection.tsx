@@ -11,62 +11,119 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ServicesSection() {
+  const { lang } = useLanguage();
+
   const services = [
     {
       icon: Compass,
-      title: "3D Elevation & Architectural Design",
-      subtitle: "3D एलिवेशन एवं नक्शा निर्माण",
+      title: lang === "hi" ? "3D फ्रंट एलिवेशन एवं नक्शा निर्माण" : "3D Elevation & Architectural Design",
+      subtitle: lang === "hi" ? "आधुनिक 3D वास्तुशिल्प व ड्राइंग" : "3D एलिवेशन एवं नक्शा निर्माण",
       description:
-        "State-of-the-art 3D exterior visualization, Vastu-compliant layout drawings, and municipal-approved blueprints so you can preview every detail before construction begins.",
-      features: ["Photorealistic 3D Renderings", "Structural Column Layouts", "Vastu Shastra Alignment"],
-      tag: "Most Popular",
+        lang === "hi"
+          ? "अत्याधुनिक 3D बाहरी विज़ुअलाइज़ेशन, वास्तु सम्मत लेआउट और नगर पालिका द्वारा अनुमोदित ब्लूप्रिंट - ताकि निर्माण शुरू होने से पहले ही आप हर कोने को 3D में देख सकें।"
+          : lang === "Hin"
+            ? "Ultra-modern 3D exterior design, Vastu ke anusaar map drawing aur municipal approved blueprints taaki neev khodne se pehle hi aap apna ghar 3D me dekh sakein."
+            : "State-of-the-art 3D exterior visualization, Vastu-compliant layout drawings, and municipal-approved blueprints so you can preview every detail before construction begins.",
+      features:
+        lang === "hi"
+          ? ["फोटो-रियलिस्टिक 3D रेंडरिंग", "कॉलम एवं पिलर स्ट्रक्चरल लेआउट", "100% वास्तु शास्त्र सम्मत"]
+          : lang === "Hin"
+            ? ["Photorealistic 3D Renders", "Pillar & Beam Structural Grid", "100% Vastu Shastra Plan"]
+            : ["Photorealistic 3D Renderings", "Structural Column Layouts", "Vastu Shastra Alignment"],
+      tag: lang === "hi" ? "सर्वाधिक लोकप्रिय" : "Most Popular",
     },
     {
       icon: Building,
-      title: "Residential Turnkey Construction",
-      subtitle: "आवासीय भवन निर्माण",
+      title: lang === "hi" ? "टर्नकी आवासीय मकान निर्माण" : "Residential Turnkey Construction",
+      subtitle: lang === "hi" ? "नींव से लेकर फिनिशिंग तक पूरी जिम्मेदारी" : "आवासीय भवन निर्माण",
       description:
-        "Comprehensive house construction from excavation to finishing. We manage labor, materials, structural safety, and finishing with zero hassle for homeowners.",
-      features: ["Certified Fe-550 TMT Steel", "Strict Curing Periods", "Complete Key Handover"],
-      tag: "Turnkey",
+        lang === "hi"
+          ? "खुदाई से लेकर रंग-रोगन और चाबी सौंपने तक का संपूर्ण मकान निर्माण। हम लेबर, उच्च कोटि की सामग्री और संरचनात्मक सुरक्षा का पूरा प्रबंधन करते हैं।"
+          : lang === "Hin"
+            ? "Neev se lekar paint aur chabi saupne tak complete ghar ka nirman. Fe-550 TMT steel aur branded cement ke saath hassle-free construction."
+            : "Comprehensive house construction from excavation to finishing. We manage labor, materials, structural safety, and finishing with zero hassle for homeowners.",
+      features:
+        lang === "hi"
+          ? ["प्रमाणित Fe-550 TMT स्टील", "कंक्रीट की सख्त तराई (Curing)", "संपूर्ण चाबी हैंडओवर"]
+          : lang === "Hin"
+            ? ["Certified Fe-550 TMT Steel", "Proper Water Curing", "Complete House Key Handover"]
+            : ["Certified Fe-550 TMT Steel", "Strict Curing Periods", "Complete Key Handover"],
+      tag: lang === "hi" ? "टर्नकी प्रोजेक्ट" : "Turnkey",
     },
     {
       icon: Store,
-      title: "Commercial & Retail Complexes",
-      subtitle: "व्यावसायिक भवन एवं कॉम्प्लेक्स",
+      title: lang === "hi" ? "व्यावसायिक शॉपिंग कॉम्प्लेक्स" : "Commercial & Retail Complexes",
+      subtitle: lang === "hi" ? "दुकान, शोरूम व अस्पताल निर्माण" : "व्यावसायिक भवन एवं कॉम्प्लेक्स",
       description:
-        "Robust structural design and execution for multi-storey shopping complexes, showrooms, hospitals, and office spaces with heavy traffic engineering.",
-      features: ["Heavy Load Capacities", "Modern Facade Systems", "Fire & Safety Norms"],
-      tag: "Commercial",
+        lang === "hi"
+          ? "बहुमंजिला शॉपिंग कॉम्प्लेक्स, शोरूम, अस्पताल और ऑफिस स्पेस के लिए भारी भार वहन क्षमता युक्त मजबूत संरचनात्मक डिजाइन एवं निर्माण।"
+          : lang === "Hin"
+            ? "Multi-storey shopping complexes, showrooms aur clinic spaces ke liye heavy load resistant commercial construction."
+            : "Robust structural design and execution for multi-storey shopping complexes, showrooms, hospitals, and office spaces with heavy traffic engineering.",
+      features:
+        lang === "hi"
+          ? ["भारी भार वहन क्षमता", "आधुनिक ग्लास एवं ACP फसाड", "अग्नि सुरक्षा एवं पार्किंग मानक"]
+          : lang === "Hin"
+            ? ["Heavy Load RCC Capacity", "Modern ACP & Glass Facade", "Fire & Parking Norms"]
+            : ["Heavy Load Capacities", "Modern Facade Systems", "Fire & Safety Norms"],
+      tag: lang === "hi" ? "कमर्शियल" : "Commercial",
     },
     {
       icon: Layers,
-      title: "Foundation & RCC Engineering",
-      subtitle: "मजबूत नींव एवं पिलर कार्य",
+      title: lang === "hi" ? "नींव एवं भारी RCC इंजीनियरिंग" : "Foundation & RCC Engineering",
+      subtitle: lang === "hi" ? "भूकंप रोधी पिलर व बीम जाल" : "मजबूत नींव एवं पिलर कार्य",
       description:
-        "Scientific soil testing and reinforced concrete foundation design engineered for Bihar's alluvial terrain to guarantee seismic and flood resilience.",
-      features: ["Deep Column Foundations", "Vibrator Compacted Concrete", "Anti-Termite Treatment"],
-      tag: "Engineering",
+        lang === "hi"
+          ? "बिहार की जलोढ़ मिट्टी के अनुकूल वैज्ञानिक सॉइल टेस्टिंग और रीइन्फोर्स्ड कंक्रीट फाउंडेशन - जो भूकंप और बाढ़ के प्रभावों से मकान को सुरक्षित रखता है।"
+          : lang === "Hin"
+            ? "Soil testing ke saath deep column footing aur heavy RCC beam grid, jo Bihar ki alluvial mitti me earthquake aur flood se surakshit rakhta hai."
+            : "Scientific soil testing and reinforced concrete foundation design engineered for Bihar's alluvial terrain to guarantee seismic and flood resilience.",
+      features:
+        lang === "hi"
+          ? ["गहरी कॉलम फुटिंग नींव", "वाइब्रेटर कॉम्पेक्टेड कंक्रीट", "एंटी-टर्माइट (दीमक) उपचार"]
+          : lang === "Hin"
+            ? ["Deep Column Foundation", "Vibrator Compacted Concrete", "Anti-Termite Treatment"]
+            : ["Deep Column Foundations", "Vibrator Compacted Concrete", "Anti-Termite Treatment"],
+      tag: lang === "hi" ? "इंजीनियरिंग" : "Engineering",
     },
     {
       icon: Palette,
-      title: "Interior Design & Fitouts",
-      subtitle: "आधुनिक इंटीरियर डिजाइनिंग",
+      title: lang === "hi" ? "आधुनिक इंटीरियर डिजाइनिंग" : "Interior Design & Fitouts",
+      subtitle: lang === "hi" ? "मॉड्यूलर किचन, फॉल्स सीलिंग व लाइटिंग" : "आधुनिक इंटीरियर डिजाइनिंग",
       description:
-        "Bespoke interior concepts, modular kitchen design, decorative POP ceiling work, and atmospheric lighting solutions that enhance space and luxury.",
-      features: ["Modular Kitchen & Wardrobes", "Ambient LED Lighting", "Premium Wall Paneling"],
-      tag: "Interiors",
+        lang === "hi"
+          ? "मॉड्यूलर किचन, आधुनिक वार्डरोब, आकर्षक POP फॉल्स सीलिंग और लग्जरी एंबियंट लाइटिंग - जो आपके घर को आलीशान और आरामदायक बनाती है।"
+          : lang === "Hin"
+            ? "Modular kitchen design, designer POP ceiling, aur ambient LED lighting jo aapke ghar ko luxury look deti hai."
+            : "Bespoke interior concepts, modular kitchen design, decorative POP ceiling work, and atmospheric lighting solutions that enhance space and luxury.",
+      features:
+        lang === "hi"
+          ? ["मॉड्यूलर किचन व अलमारी", "एंबियंट एलईडी प्रोफाइल लाइट्स", "प्रीमियम वॉल पैनलिंग"]
+          : lang === "Hin"
+            ? ["Modular Kitchen & Wardrobe", "LED Profile Lighting", "Premium Wall Paneling"]
+            : ["Modular Kitchen & Wardrobes", "Ambient LED Lighting", "Premium Wall Paneling"],
+      tag: lang === "hi" ? "इंटीरियर" : "Interiors",
     },
     {
       icon: Wrench,
-      title: "Renovation & Structural Expansion",
-      subtitle: "भवन नवीनीकरण एवं विस्तार",
+      title: lang === "hi" ? "भवन नवीनीकरण एवं मंजिल विस्तार" : "Renovation & Structural Expansion",
+      subtitle: lang === "hi" ? "नई मंजिल जोड़ना व सीलन निवारण" : "भवन नवीनीकरण एवं विस्तार",
       description:
-        "Add new floors, modernize aging facades, repair dampness, and structurally reinforce existing properties with certified civil engineering solutions.",
-      features: ["Floor Additions", "Waterproofing Solutions", "Facade Modernization"],
-      tag: "Renovation",
+        lang === "hi"
+          ? "मौजूदा मकान में नई मंजिलें जोड़ना, पुराने फसाड को नया मॉडर्न रूप देना, सीलन का पक्का इलाज और प्रमाणित सिविल इंजीनियरिंग द्वारा ढांचागत मजबूती।"
+          : lang === "Hin"
+            ? "Ghar me nayi floor jodna, old front ko modern elevation me badalna aur waterproofing treatment."
+            : "Add new floors, modernize aging facades, repair dampness, and structurally reinforce existing properties with certified civil engineering solutions.",
+      features:
+        lang === "hi"
+          ? ["नई मंजिल निर्माण", "100% वाटरप्रूफिंग तकनीक", "आधुनिक फसाड मेकओवर"]
+          : lang === "Hin"
+            ? ["New Floor Additions", "Permanent Waterproofing", "Modern Facade Makeover"]
+            : ["Floor Additions", "Waterproofing Solutions", "Facade Modernization"],
+      tag: lang === "hi" ? "नवीनीकरण" : "Renovation",
     },
   ];
 
@@ -76,13 +133,21 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
-            Our Core Specializations
+            {lang === "hi" ? "हमारी मुख्य विशेषज्ञताएं" : "Our Core Specializations"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Comprehensive Construction &amp; Architectural Services
+            {lang === "hi"
+              ? "संपूर्ण निर्माण एवं वास्तुशिल्प सेवाएं"
+              : lang === "Hin"
+                ? "Complete Construction & Architectural Services"
+                : "Comprehensive Construction & Architectural Services"}
           </h2>
           <p className="text-slate-600 text-base sm:text-lg">
-            From initial sketch to the final coat of paint, Mother&apos;s Design &amp; Construction delivers benchmark structural engineering and modern aesthetics.
+            {lang === "hi"
+              ? "प्रारंभिक रेखाचित्र से लेकर अंतिम रंग-रोगन तक, मदर'एस डिज़ाइन एंड कंस्ट्रक्शन हर प्रोजेक्ट में बेजोड़ मजबूती और आधुनिक सुंदरता प्रदान करती है।"
+              : lang === "Hin"
+                ? "Initial sketch se lekar final coat of paint tak, Mother's Design & Construction benchmark civil engineering aur modern look deliver karti hai."
+                : "From initial sketch to the final coat of paint, Mother's Design & Construction delivers benchmark structural engineering and modern aesthetics."}
           </p>
         </div>
 
@@ -130,7 +195,7 @@ export default function ServicesSection() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-white group-hover:bg-blue-600 text-slate-800 group-hover:text-white border border-slate-300 group-hover:border-blue-600 font-semibold text-xs tracking-wide transition-all shadow-sm"
                 >
-                  <span>Inquire for this Service</span>
+                  <span>{lang === "hi" ? "इस सेवा की जानकारी लें" : lang === "Hin" ? "Is Service Ki Enquiry Karein" : "Inquire for this Service"}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>

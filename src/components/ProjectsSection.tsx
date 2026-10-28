@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Eye, MapPin, Tag, ExternalLink, X, ChevronLeft, ChevronRight, ShieldCheck, MessageCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProjectsSection() {
+  const { lang } = useLanguage();
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
@@ -174,24 +176,34 @@ export default function ProjectsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-500/20">
-              Authentic Google Maps Portfolio (12 Live Projects)
+              {lang === "hi"
+                ? "गूगल मैप्स सत्यापित पोर्टफोलियो (12 लाइव प्रोजेक्ट्स)"
+                : "Authentic Google Maps Portfolio (12 Live Projects)"}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Real Work &amp; Ground Deliveries
+              {lang === "hi"
+                ? "वास्तविक निर्माण कार्य एवं ग्राउंड डिलीवरी"
+                : lang === "Hin"
+                  ? "Real Construction Work & Site Deliveries"
+                  : "Real Work & Ground Deliveries"}
             </h2>
             <p className="text-slate-400 max-w-xl text-sm sm:text-base">
-              Browse through authentic high-definition photographs of our completed 3D architectural elevations, active commercial plazas, and heavy civil foundations.
+              {lang === "hi"
+                ? "हमारे द्वारा निर्मित 3D आर्किटेक्चरल एलिवेशन, कमर्शियल शॉपिंग कॉम्प्लेक्स और मजबूत सिविल नींव की वास्तविक तस्वीरें देखें।"
+                : lang === "Hin"
+                  ? "Hamare dwara banaye gaye 3D front elevation, commercial complexes aur heavy civil foundation work ki real photos dekhein."
+                  : "Browse through authentic high-definition photographs of our completed 3D architectural elevations, active commercial plazas, and heavy civil foundations."}
             </p>
           </div>
 
           {/* Filter Pills */}
           <div className="flex flex-wrap gap-2">
             {[
-              { key: "all", label: "All Projects (12)" },
-              { key: "architecture", label: "3D Architecture" },
-              { key: "commercial", label: "Commercial Sites" },
-              { key: "residential", label: "Residential Villas" },
-              { key: "engineering", label: "Foundations & Civil" },
+              { key: "all", label: lang === "hi" ? "सभी प्रोजेक्ट्स (12)" : "All Projects (12)" },
+              { key: "architecture", label: lang === "hi" ? "3D आर्किटेक्चर" : "3D Architecture" },
+              { key: "commercial", label: lang === "hi" ? "कमर्शियल भवन" : "Commercial Sites" },
+              { key: "residential", label: lang === "hi" ? "आवासीय विला" : "Residential Villas" },
+              { key: "engineering", label: lang === "hi" ? "नींव एवं सिविल कार्य" : "Foundations & Civil" },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -199,11 +211,10 @@ export default function ProjectsSection() {
                   setActiveFilter(tab.key);
                   setSelectedPhotoIndex(null);
                 }}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeFilter === tab.key
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${activeFilter === tab.key
                     ? "bg-blue-600 text-white shadow-lg shadow-blue-600/40"
                     : "bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700"
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -216,7 +227,7 @@ export default function ProjectsSection() {
           {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
-              className="group bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 shadow-xl hover:border-blue-500/60 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-slate-800/80 rounded-2xl overflow-hidden border border-slate-700/80 shadow-xl hover:border-blue-400 hover:shadow-blue-500/20 corporate-hover-lift transition-all duration-300 flex flex-col justify-between"
             >
               {/* Image Frame with Click to Zoom */}
               <div
@@ -235,7 +246,7 @@ export default function ProjectsSection() {
                 {/* Source Verified Tag */}
                 <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-emerald-400 border border-slate-700 flex items-center space-x-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>{project.source}</span>
+                  <span>{lang === "hi" ? "सत्यापित प्रोजेक्ट" : project.source}</span>
                 </div>
 
                 <div className="absolute top-3 right-3 bg-blue-600/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-extrabold text-white flex items-center space-x-1">
@@ -247,7 +258,7 @@ export default function ProjectsSection() {
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                   <span className="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs shadow-lg flex items-center space-x-1.5">
                     <Eye className="w-4 h-4" />
-                    <span>View High-Res Photo</span>
+                    <span>{lang === "hi" ? "बड़ी तस्वीर देखें" : "View High-Res Photo"}</span>
                   </span>
                 </div>
 
@@ -278,7 +289,7 @@ export default function ProjectsSection() {
                     className="text-xs text-blue-400 hover:text-blue-300 font-bold flex items-center space-x-1"
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    <span>Enlarge</span>
+                    <span>{lang === "hi" ? "बड़ा करें" : "Enlarge"}</span>
                   </button>
 
                   <a
@@ -289,7 +300,7 @@ export default function ProjectsSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1.5 text-[11px] font-bold px-3 py-1.5 bg-blue-600/30 hover:bg-blue-600 text-blue-200 hover:text-white rounded-lg border border-blue-500/40 transition-colors"
                   >
-                    <span>Inquire</span>
+                    <span>{lang === "hi" ? "जानकारी लें" : "Inquire"}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
@@ -307,7 +318,11 @@ export default function ProjectsSection() {
             className="inline-flex items-center space-x-2 text-sm font-bold text-blue-400 hover:text-blue-300 bg-slate-800/90 px-6 py-3.5 rounded-xl border border-slate-700 hover:border-blue-500 transition-all shadow-md"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>View All Reviews, Client Posts &amp; Ratings on Google Maps</span>
+            <span>
+              {lang === "hi"
+                ? "गूगल मैप्स पर सभी समीक्षाएं, क्लाइंट तस्वीरें और रेटिंग्स देखें"
+                : "View All Reviews, Client Posts & Ratings on Google Maps"}
+            </span>
           </a>
         </div>
       </div>
@@ -376,7 +391,13 @@ export default function ProjectsSection() {
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center space-x-2 shadow-md transition-all"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Inquire on WhatsApp</span>
+                  <span>
+                    {lang === "hi"
+                      ? "व्हाट्सएप पर नक्शा व लागत पूछें"
+                      : lang === "Hin"
+                        ? "WhatsApp Par Naksha & Kharcha Poochein"
+                        : "Inquire on WhatsApp"}
+                  </span>
                 </a>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { PhoneCall, AlertCircle, X, Clock, CheckCircle2, Send, Zap } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface UrgentContactModalProps {
   isOpen: boolean;
@@ -9,12 +10,81 @@ interface UrgentContactModalProps {
 }
 
 export default function UrgentContactModal({ isOpen, onClose }: UrgentContactModalProps) {
+  const { lang } = useLanguage();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [issue, setIssue] = useState("Immediate Site Inspection / Emergency Visit");
   const [submitted, setSubmitted] = useState(false);
 
+  const tContent = {
+    hi: {
+      badge: "प्राथमिकता फास्ट-ट्रैक सेवा",
+      title: "तत्काल साइट निरीक्षण एवं आपातकालीन परामर्श",
+      desc: "क्या आपको पिपरा या सुपौल में आपातकालीन नींव जांच, छत ढलाई में तकनीकी मार्गदर्शन, या तुरंत साइट विजिट की आवश्यकता है?",
+      directCall: "सीधी आपातकालीन हेल्पलाइन",
+      callBtn: "अभी कॉल करें",
+      callbackPrompt: "या 15 मिनट में गारंटीड कॉलबैक का अनुरोध करें",
+      redirecting: "प्राथमिकता व्हाट्सएप डेस्क पर भेजा जा रहा है... हमारे सिविल इंजीनियर आपकी समस्या की समीक्षा कर रहे हैं।",
+      nameLabel: "आपका नाम *",
+      namePlaceholder: "अपना नाम दर्ज करें",
+      phoneLabel: "मोबाइल नंबर *",
+      phonePlaceholder: "+91 98765 43210",
+      urgencyLabel: "समस्या का प्रकार *",
+      options: [
+        { val: "Immediate Site Inspection / Emergency Visit", label: "तत्काल साइट निरीक्षण / इमरजेंसी विजिट" },
+        { val: "Ongoing Foundation or Slab Casting Issue", label: "चल रही नींव या छत ढलाई में समस्या" },
+        { val: "Urgent 3D Architectural Drawing Needed", label: "तत्काल 3D आर्किटेक्चरल नक्शे की जरूरत" },
+        { val: "Dispute / Contractor Replacement on Active Site", label: "चालू साइट पर ठेकेदार बदलाव / विवाद समाधान" },
+      ],
+      submitBtn: "व्हाट्सएप पर तत्काल कॉलबैक का अनुरोध करें",
+    },
+    Hin: {
+      badge: "Priority Fast-Track Line",
+      title: "Urgent Site Consultation & Support",
+      desc: "Kya aapko Pipra ya Supaul me emergency foundation test, slab casting guidance, ya turant site visit chahiye?",
+      directCall: "Direct Emergency Line",
+      callBtn: "Abhi Call Karein",
+      callbackPrompt: "Ya 15 Minute Me Guaranteed Callback Request Karein",
+      redirecting: "Priority WhatsApp Desk par bhej rahe hain... Hamare engineer review kar rahe hain.",
+      nameLabel: "Aapka Naam *",
+      namePlaceholder: "Apna naam likhiye",
+      phoneLabel: "Mobile Number *",
+      phonePlaceholder: "+91 98765 43210",
+      urgencyLabel: "Problem Ka Type *",
+      options: [
+        { val: "Immediate Site Inspection / Emergency Visit", label: "Immediate Site Inspection / Emergency Visit" },
+        { val: "Ongoing Foundation or Slab Casting Issue", label: "Foundation ya Slab Casting me samasya" },
+        { val: "Urgent 3D Architectural Drawing Needed", label: "Urgent 3D Architectural Drawing Chahiye" },
+        { val: "Dispute / Contractor Replacement on Active Site", label: "Site Par Contractor Replacement / Dispute" },
+      ],
+      submitBtn: "WhatsApp Par Urgent Callback Request Karein",
+    },
+    en: {
+      badge: "Priority Fast-Track Line",
+      title: "Urgent Site Consultation & Support",
+      desc: "Need emergency foundation assessment, ongoing slab casting guidance, or an immediate site visit in Pipra / Supaul?",
+      directCall: "Direct Emergency Line",
+      callBtn: "Call Now",
+      callbackPrompt: "Or Request Guaranteed 15-Minute Callback",
+      redirecting: "Redirecting to Priority WhatsApp Desk... Our civil engineer is reviewing now.",
+      nameLabel: "Your Name *",
+      namePlaceholder: "Enter your name",
+      phoneLabel: "Mobile Number *",
+      phonePlaceholder: "+91 98765 43210",
+      urgencyLabel: "Nature of Urgency *",
+      options: [
+        { val: "Immediate Site Inspection / Emergency Visit", label: "Immediate Site Inspection / Emergency Visit" },
+        { val: "Ongoing Foundation or Slab Casting Issue", label: "Ongoing Foundation or Slab Casting Issue" },
+        { val: "Urgent 3D Architectural Drawing Needed", label: "Urgent 3D Architectural Drawing Needed" },
+        { val: "Dispute / Contractor Replacement on Active Site", label: "Dispute / Contractor Replacement on Active Site" },
+      ],
+      submitBtn: "Request Urgent Callback via WhatsApp",
+    },
+  };
+
   if (!isOpen) return null;
+
+  const current = tContent[lang] || tContent.hi;
 
   const handleUrgentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,14 +116,14 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
 
           <div className="flex items-center space-x-2 text-amber-200 text-xs font-black uppercase tracking-wider mb-2">
             <Zap className="w-4 h-4 fill-current animate-bounce" />
-            <span>Priority Fast-Track Line</span>
+            <span>{current.badge}</span>
           </div>
 
           <h3 className="text-2xl font-black tracking-tight text-white">
-            Urgent Site Consultation &amp; Support
+            {current.title}
           </h3>
           <p className="text-xs sm:text-sm text-red-100 mt-1">
-            Need emergency foundation assessment, ongoing slab casting guidance, or an immediate site visit in Pipra / Supaul?
+            {current.desc}
           </p>
         </div>
 
@@ -67,7 +137,7 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
               </div>
               <div>
                 <div className="text-xs font-bold text-red-800 uppercase tracking-wide">
-                  Direct Emergency Line
+                  {current.directCall}
                 </div>
                 <a
                   href="tel:+918264360443"
@@ -82,7 +152,7 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
               href="tel:+918264360443"
               className="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-extrabold shadow-md transition-all text-center"
             >
-              Call Now
+              {current.callBtn}
             </a>
           </div>
 
@@ -90,24 +160,24 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
           <div>
             <div className="flex items-center space-x-2 text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
               <Clock className="w-4 h-4 text-blue-600" />
-              <span>Or Request Guaranteed 15-Minute Callback</span>
+              <span>{current.callbackPrompt}</span>
             </div>
 
             {submitted ? (
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center space-x-2">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                <span>Redirecting to Priority WhatsApp Desk... Our civil engineer is reviewing now.</span>
+                <span>{current.redirecting}</span>
               </div>
             ) : (
               <form onSubmit={handleUrgentSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Your Name *
+                    {current.nameLabel}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Enter your name"
+                    placeholder={current.namePlaceholder}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-red-600 text-sm text-slate-900"
@@ -116,12 +186,12 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Mobile Number *
+                    {current.phoneLabel}
                   </label>
                   <input
                     type="tel"
                     required
-                    placeholder="+91 98765 43210"
+                    placeholder={current.phonePlaceholder}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-red-600 text-sm text-slate-900"
@@ -130,25 +200,18 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Nature of Urgency *
+                    {current.urgencyLabel}
                   </label>
                   <select
                     value={issue}
                     onChange={(e) => setIssue(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-red-600 text-sm text-slate-900 bg-white"
                   >
-                    <option value="Immediate Site Inspection / Emergency Visit">
-                      Immediate Site Inspection / Emergency Visit
-                    </option>
-                    <option value="Ongoing Foundation or Slab Casting Issue">
-                      Ongoing Foundation or Slab Casting Issue
-                    </option>
-                    <option value="Urgent 3D Architectural Drawing Needed">
-                      Urgent 3D Architectural Drawing Needed
-                    </option>
-                    <option value="Dispute / Contractor Replacement on Active Site">
-                      Dispute / Contractor Replacement on Active Site
-                    </option>
+                    {current.options.map((opt, idx) => (
+                      <option key={idx} value={opt.val}>
+                        {opt.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -157,7 +220,7 @@ export default function UrgentContactModal({ isOpen, onClose }: UrgentContactMod
                   className="w-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-extrabold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm"
                 >
                   <Send className="w-4 h-4" />
-                  <span>Request Urgent Callback via WhatsApp</span>
+                  <span>{current.submitBtn}</span>
                 </button>
               </form>
             )}
