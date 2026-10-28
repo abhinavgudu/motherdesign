@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Star, ShieldCheck, Award, ArrowUpRight, CheckCircle2, PhoneCall, Compass, Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import HeroCarousel from "./HeroCarousel";
 
 export default function Hero() {
   const { lang, t } = useLanguage();
@@ -124,13 +125,7 @@ export default function Hero() {
               {/* Real Project Card */}
               <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-2xl">
                 <div className="relative h-80 sm:h-96 w-full group">
-                  <Image
-                    src="/images/hero-building.jpg"
-                    alt="Mother's Design & Construction Real 3D Elevation Project"
-                    fill
-                    priority
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                  />
+                  <HeroCarousel />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
 
                   {/* Project Tag Overlay */}

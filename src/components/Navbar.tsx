@@ -24,22 +24,23 @@ export default function Navbar({ onOpenUrgent }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full shadow-sm">
       {/* Top Corporate & Urgent Alert Bar */}
-      <div className="bg-[#0b192c] text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2">
-          {/* Location & Hours */}
-          <div className="flex items-center space-x-6 flex-wrap w-full sm:w-auto">
-            <div className="flex items-center space-x-1.5 min-w-0">
+      <div className="bg-[#0b192c] text-slate-300 text-xs py-2 px-4 border-b border-slate-800 overflow-x-auto scrollbar-none">
+        <div className="max-w-7xl mx-auto flex flex-row justify-between items-center gap-4 flex-nowrap min-w-max">
+          {/* Location & Hours - Strictly 1 Line */}
+          <div className="flex items-center space-x-3 flex-nowrap shrink-0 text-slate-300">
+            <div className="flex items-center space-x-1.5 whitespace-nowrap">
               <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-              <span className="break-words">{t("topbar.location")}</span>
+              <span>{t("topbar.location")}</span>
             </div>
-            <div className="hidden md:flex items-center space-x-1.5">
+            <span className="text-slate-600">•</span>
+            <div className="flex items-center space-x-1.5 whitespace-nowrap">
               <Clock className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-              <span className="whitespace-nowrap">{t("topbar.hours")}</span>
+              <span>{t("topbar.hours")}</span>
             </div>
           </div>
 
-          {/* Social Icons + Language Switcher + Ratings + Actions */}
-          <div className="flex items-center space-x-2 sm:space-x-3 flex-wrap w-full sm:w-auto sm:justify-end">
+          {/* Social Icons + Language Switcher + Ratings + Actions - Strictly 1 Line */}
+          <div className="flex items-center space-x-2 sm:space-x-3 flex-nowrap shrink-0">
             {/* Language Switcher Pill */}
             <div className="flex items-center bg-slate-800/90 p-0.5 rounded-full border border-slate-700/80 text-[11px] font-bold shadow-inner">
               <button
